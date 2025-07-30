@@ -19,11 +19,8 @@ COPY . .
 # Instalar dependencias de Laravel
 RUN composer install --optimize-autoloader --no-dev
 
-# Generar clave de aplicación si no existe
-RUN php artisan key:generate --force
-
-# Cachear configuración y rutas
-RUN php artisan config:cache && php artisan route:cache
+# Cachear configuración y rutas (opcional, no obligatorio en build)
+# RUN php artisan config:cache && php artisan route:cache
 
 # Exponer el puerto que usará Laravel
 EXPOSE 8000
