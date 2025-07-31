@@ -35,18 +35,15 @@ class UserController extends Controller
     }
 
     // Login
-    public function login(Request $request)
+     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+    $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials)) {
-            return response()->json([
-                'message' => 'Login exitoso',
-                //'user' => Auth::user()
-            ]);
-        }
-
-        return response()->json(['message' => 'Credenciales inválidas'], 401);
+    if (Auth::attempt($credentials)) {
+        return response()->json([
+            'message' => 'Login exitoso',
+            'user' => Auth::user()
+        ]);
     }
 
     // Logout
