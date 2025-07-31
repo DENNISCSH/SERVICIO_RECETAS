@@ -42,7 +42,7 @@ class UserController extends Controller
         if (Auth::attempt($credentials)) {
             return response()->json([
                 'message' => 'Login exitoso',
-                'user' => Auth::user() // ✅ este es el fix importante
+                'user' => $user
             ]);
         }
 
