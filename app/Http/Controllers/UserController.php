@@ -43,7 +43,7 @@ class UserController extends Controller
             $user = Auth::user(); // ✅ Definimos el usuario autenticado
 
             return response()->json([
-                'message' => 'Login exitoso',
+                'message' => 'Login exitoso con datos',
                 'user' => $user
             ]);
         }
