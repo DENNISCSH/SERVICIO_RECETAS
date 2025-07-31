@@ -30,7 +30,7 @@ class UserController extends Controller
 
         return response()->json([
             'message' => 'Usuario registrado y autenticado',
-            'user' => $user // 👈 descomenta esto si lo necesitas también
+            'user' => $user
         ]);
     }
 
@@ -40,6 +40,8 @@ class UserController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
+            $user = Auth::user(); // ✅ Definimos el usuario autenticado
+
             return response()->json([
                 'message' => 'Login exitoso',
                 'user' => $user
