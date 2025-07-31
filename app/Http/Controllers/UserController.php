@@ -30,20 +30,23 @@ class UserController extends Controller
 
         return response()->json([
             'message' => 'Usuario registrado y autenticado',
-            //'user' => $user
+            'user' => $user // 👈 descomenta esto si lo necesitas también
         ]);
     }
 
     // Login
-     public function login(Request $request)
+    public function login(Request $request)
     {
-    $credentials = $request->only('email', 'password');
+        $credentials = $request->only('email', 'password');
 
-    if (Auth::attempt($credentials)) {
-        return response()->json([
-            'message' => 'Login exitoso',
-            'user' => Auth::user()
-        ]);
+        if (Auth::attempt($credentials)) {
+            return response()->json([
+                'message' => 'Login exitoso',
+                'user' => Auth::user() // ✅ este es el fix importante
+            ]);
+        }
+
+        return response()->json(['message' => 'Credenciales inválidas'], 401);
     }
 
     // Logout
